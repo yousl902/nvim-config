@@ -1,0 +1,32 @@
+-- require('lualine').setup {
+--   options = {
+--     -- ...
+--     theme = 'monokai-pro'
+--     -- ...
+--   }
+-- }
+-- --
+-- vim.cmd([[colorscheme monokai-pro]])
+--
+-- local navic = require("nvim-navic")
+--
+-- require("lspconfig").clangd.setup {
+--     on_attach = function(client, bufnr)
+--         navic.attach(client, bufnr)
+--     end
+-- }
+
+-- change the theme automatically when nvim is started
+--vim.cmd([[MonokaiPro octagon]])
+--vim.cmd([[colorscheme onedark]])
+-- require("chatgpt").setup({
+--     api_key_cmd = "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",
+-- })
+--
+--
+vim.cmd([[colorscheme codedark]])
+-- require('lspconfig').sqlls.setup{
+--     on_attach = function(client, bufnr)
+--         require('sqls').on_attach(client, bufnr)
+--     end
+-- }
