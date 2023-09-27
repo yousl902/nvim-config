@@ -37,8 +37,7 @@ return {
 
   {
     "glepnir/lspsaga.nvim",
-    lazy = true,
-    config = function()
+    lazy = true, config = function()
       require("lspsaga").setup({})
     end,
   },
@@ -96,71 +95,72 @@ return {
   {
     'sansyrox/vim-python-virtualenv'
   },
-  -- {'abenz1267/nvim-databasehelper', opt = true},
+
+  {
+    "ggandor/leap.nvim",
+  },
+
+  {
+  "norcalli/nvim-colorizer.lua",
+    {
+      "norcalli/nvim-terminal.lua",
+      config = function()
+        require("terminal").setup()
+      end,
+    },
+  },
+
+  {
+  "norcalli/nvim-colorizer.lua",
+  },
+
+  {
+  'code-biscuits/nvim-biscuits',
+  requires = {
+    'nvim-treesitter/nvim-treesitter',
+     run = ':TSUpdate'
+  },
+    setup = {
+      cursor_line_only = true
+    },
+  },
+
+  -- nvim inside of chrome
+  {
+    'glacambre/firenvim',
+
+    -- Lazy load firenvim
+    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+    -- lazy = not vim.g.started_by_firenvim,
+    build = function()
+        vim.fn["firenvim#install"](0)
+    end
+},
+
+  -- for fast and smooth scrolling
+  {
+    'karb94/neoscroll.nvim',
+    config = function()
+      require('neoscroll').setup()
+    end
+  },
+
+  -- align text
   -- {
-  --   'kristijanhusak/vim-dadbod-ui',
-  --   requires = {'tpope/vim-dadbod'},
-  --   opt = true,
-  --   cmd = {'DBUIToggle', 'DBUIAddConnection', 'DBUI', 'DBUIFindBuffer', 'DBUIRenameBuffer'},
-  --   config = function()
-  --     vim.g.db_ui_save_location = '~/.config/nvim/db_ui_history'
-  --     vim.g.db_ui_use_nerd_fonts = 1
-  --     vim.g.db_ui_win_position = 'left'
-  --     vim.g.db_ui_winwidth = 35
-  --     vim.g.db_ui_use_nerd_fonts = 1
-  --     vim.g.db_ui_table_helpers = {
-  --       postgres = {
-  --         primary_key = 'id',
-  --         foreign_key = 'id',
-  --         join_string = '->',
-  --         delete_cascade = 'cascade',
-  --         delete_restrict = 'restrict',
-  --         delete_set_null = 'set null',
-  --         delete_set_default = 'set default',
-  --       },
-  --     }
-  --   end
+  --   'junegunn/vim-easy-align',
+  --   keys = {
+  --     {'x', 'ga'},
+  --     {'n', 'ga'},
+  --   },
   -- },
-  -- {
-  --   'kristijanhusak/vim-dadbod-completion',
-  --   requires = {'tpope/vim-dadbod'},
-  --   opt = true,
-  --   ft = {'sql'},
-  --   config = function()
-  --     vim.g.dbs = {
-  --       ['*'] = {
-  --         ['driver'] = 'sqlite',
-  --         ['database'] = 'db.sqlite3',
-  --       },
-  --       ['sqlite'] = {
-  --         ['driver'] = 'sqlite',
-  --         ['database'] = 'db.sqlite3',
-  --       },
-  --       ['postgres'] = {
-  --         ['driver'] = 'postgres',
-  --         ['database'] = 'postgres',
-  --         ['host'] = 'localhost',
-  --         ['port'] = 5432,
-  --         ['username'] = 'postgres',
-  --         ['password'] = 'postgres',
-  --       },
-  --     }
-  --   end
-  -- },
-  -- {
-  --   'kristijanhusak/vim-dadbod-syntax',
-  --   requires = {'tpope/vim-dadbod'},
-  --   opt = true,
-  --   ft = {'sql'},
-  -- },
-  --
-  -- {
-  --   'kristijanhusak/vim-dadbod-ui',
-  --   requires = {'tpope/vim-dadbod'},
-  --   opt = true,
-  --   cmd = {'DBUIToggle', 'DBUIAddConnection', 'DBUI', 'DBUIFindBuffer', 'DBUIRenameBuffer'},
-  --   config = function()
-  --     vim.g.db_ui_save_location = '~/.config/nvim/db_ui_history'
-  --   end
-  -- },
+  {
+    "godlygeek/tabular",
+  },
+
+  -- manage you files
+  {
+    'nvim-lua/plenary.nvim',
+    'ThePrimeagen/harpoon'
+  }
+
 }

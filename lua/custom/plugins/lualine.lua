@@ -22,9 +22,11 @@ return {
     colorful = true,
   },
   config = function(_, opts)
+    if vim.g.started_by_firenvim ~= true then
     local lualine_config = require("config.lualine")
     lualine_config.setup(opts)
     lualine_config.load()
+  end
   end,
 }
 

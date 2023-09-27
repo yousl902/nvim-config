@@ -23,7 +23,8 @@ return {
 			-- flake8
 			null_ls.builtins.diagnostics.flake8,
 			null_ls.builtins.diagnostics.shellcheck,
-			null_ls.builtins.builtins.code_actions.shellcheck
+			null_ls.builtins.builtins.code_actions.shellcheck,
+			null_ls.builtins.formatting.clang_format,
 		},
 		-- configure format on save
 		on_attach = function(current_client, bufnr)
@@ -45,7 +46,11 @@ return {
 			end
 		end,
 		}
-	end
+	end,
+
+  on_init = function(new_client, _)
+      new_client.offset_encoding = 'utf-32'
+    end,
 }
 
 --

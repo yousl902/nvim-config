@@ -21,7 +21,7 @@ require('lazy').setup({
 
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+  -- Fuzzy Finder Algorithm which requires local dependencies to be builtg
   -- Only load if `make` is available. Make sure you have the system
   -- requirements installed.
   {
@@ -40,6 +40,13 @@ require('lazy').setup({
 -- essential plugins
      { 'tpope/vim-surround' }, -- add, delete, change surroundings (it's awesome)
      {'inkarkat/vim-ReplaceWithRegister'}, -- replace with register contents using motion (gr + motion)
+     --{'frazrepo/vim-rainbow'}, -- colored parentheses
+     --{'luochen1990/rainbow'}, -- colored parentheses
+     {'p00f/nvim-ts-rainbow'},
+
+    -- to learn basic vim commands
+     {'ThePrimeagen/vim-be-good'},
+     {"rhysd/vim-clang-format"},
 
   { import = 'custom.plugins' },
 }, {})
@@ -47,7 +54,7 @@ require('lazy').setup({
 -- [[configurations]]
 require "config.set"
 require "config.keymaps"
---require "config.diagnostic"
+--require "config.d,iagnostic"
 require "config.filetree"
 require "config.color"
 

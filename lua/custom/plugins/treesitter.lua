@@ -120,9 +120,22 @@ return {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>", desc = "Decrement selection", mode = "x" },
     },
-    ---@type TSConfig
+    -----@type TSConfig
     opts = {
-      highlight = { enable = true, ["variable"] = "#FF00FF" },
+      highlight = {
+        enable = true,
+        ["variable"] = "#FF00FF" ,
+        rainbow = {
+          enable = true,
+          -- disable = { "html", "vue", "tsx", "cpp", "jsx"},
+          -- extended_mode = false,
+          -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+          --extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+          --max_file_lines = nil, -- Do not enable for files with more than n lines, int
+         -- colors = { "#bf616a", "#d08770", "#ebcb8b", "#a3be8c", "#88c0d0", "#5e81ac", "#b48ead" }, -- table of hex strings
+          --termcolors = {"#3364FF"} -- table of colour name strings
+        },
+      },
       indent = { enable = true },
       ensure_installed = {
         "bash",
@@ -145,8 +158,8 @@ return {
         "javascript",
         "typescript",
         "tsx",
+        "sql",
         --"yaml",
-        "html",
         "css",
         --"markdown",
         --"markdown_inline",
@@ -167,7 +180,7 @@ return {
         },
       },
     },
-    ---@param opts TSConfig
+    -----@param opts TSConfig
     config = function(_, opts)
       if type(opts.ensure_installed) == "table" then
         ---@type table<string, boolean>

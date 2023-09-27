@@ -21,8 +21,8 @@ return {
 
     -- See `:help telescope.builtin`
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' }),
-    vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' }),
-    vim.keymap.set('n', '<leader>/', function()
+    vim.keymap.set('n', '<leader>/', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' }),
+    vim.keymap.set('n', '<leader><space>', function()
       -- You can pass additional configuration to telescope to change theme, layout, etc.
       require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         winblend = 10,
@@ -37,11 +37,13 @@ return {
     vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' }),
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' }),
     vim.keymap.set('n', '<leader>sk', "<cmd>Telescope keymaps<cr>", {desc = "Keymaps" }),
-
+    -- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", {desc = "Go to references" }),
+    -- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", {desc = "Go to implementations"} ),
+    --
 
     -- Diagnostic keymaps
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' }),
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' }),
+    vim.keymap.set('n', '<leader>lk', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' }),
+    vim.keymap.set('n', '<leaderlj', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' }),
     --vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' }),
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' }),
   }

@@ -4,6 +4,11 @@ vim.g.node_host_prog = "~/.nvm/versions/node/v16.15.0/bin/node"
 -- set nocompatible
 vim.o.compatible = false
 
+-- disable netrw (strongly recommended by nvim-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -13,10 +18,14 @@ vim.wo.relativenumber = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
+-- the cursor stays in the middle of the screen
+vim.o.scrolloff = 999
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
+vim.cmd('set clipboard=unnamed')
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -40,7 +49,6 @@ vim.o.updatetime = 250
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
-vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
@@ -59,4 +67,6 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+vim.g.rainbow_active = 1
 
