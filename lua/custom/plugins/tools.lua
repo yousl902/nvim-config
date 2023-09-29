@@ -84,10 +84,12 @@ return {
       end,
     },
     init = function()
-      if not Util.has("noice.nvim") then
-        Util.on_very_lazy(function()
-          vim.notify = require("notify")
-        end)
+      if vim.g.started_by_firenvim ~= true then
+        if not Util.has("noice.nvim") then
+          Util.on_very_lazy(function()
+            vim.notify = require("notify")
+          end)
+        end
       end
     end,
   },
