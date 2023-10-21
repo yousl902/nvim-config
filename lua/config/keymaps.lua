@@ -114,4 +114,5 @@ vim.keymap.set("n", "<leader>f4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr
 vim.keymap.set("n", "<leader>fn", "<cmd>lua require('harpoon.ui').nav_next() <cr>", {desc = "Harpoon next"})
 vim.keymap.set("n", "<leader>fp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", {desc = "Harpoon prev"})
 
-
+-- Todo-comments
+vim.keymap.set("n", "<leader>td", "<cmd>TodoTelescope<cr>", {desc = "Todo Telescope"})
