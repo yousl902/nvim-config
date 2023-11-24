@@ -1,11 +1,11 @@
 return {
-  --   {
-  --   "andrewferrier/debugprint.nvim",
-  --   opts = {
-  --     create_keymaps = false,
-  --     ...,
-  --   },
-  -- },
+  {
+    'andrewferrier/debugprint.nvim',
+    opts = {
+      create_keymaps = false,
+      ...,
+    },
+  },
 
   -- -- Debugging
   -- {

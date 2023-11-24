@@ -59,9 +59,26 @@ key.set('n', 't', '<Plug>(leap-forward-to)', { desc = 'Leap Forward' })
 key.set('n', 'T', '<Plug>(leap-backward-to)', { desc = 'Leap Backward' })
 
 -- debugprint
-key.set('n', '<leader>dp', "<cmd>lua require('debugprint').debugprint()<CR>", { expr = true, desc = 'Debug Print' })
-key.set('n', '<leader>dv', "<cmd>lua require('debugprint').debugprint {variable = true}<CR>", { expr = true, desc = 'Debug variable' })
-key.set('n', '<leader>do', "<cmd>lua require('debugprint').debugprint {motion = true}<CR>", { expr = true, desc = 'Locate a variable using motion to debug' })
+key.set("n", "<Leader>dp", function()
+    -- Note: setting `expr=true` and returning the value are essential
+    return require('debugprint').debugprint()
+end, {
+    expr = true,
+})
+key.set("n", "<Leader>dv", function()
+    -- Note: setting `expr=true` and returning the value are essential
+    return require('debugprint').debugprint({ variable = true })
+end, {
+    expr = true,
+})
+
+key.set("n", "<Leader>do", function()
+    -- Note: setting `expr=true` and returning the value are essential
+    -- It's also important to use motion = true for operator-pending motions
+    return require('debugprint').debugprint({ motion = true })
+end, {
+    expr = true,
+})
 key.set('n', '<leader>dd', '<cmd>DeleteDebugPrints<CR>', { desc = 'delete debug prints' })
 
 --lsp
