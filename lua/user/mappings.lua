@@ -22,8 +22,8 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('x', '<leader>p', [["_dP]])
 
 -- tabline keymaps
-vim.keymap.set('n', 'tn', ':BufferLineMoveNext<CR>')
-vim.keymap.set('n', 'tp', ':BufferLineMovePrev<CR>')
+-- vim.keymap.set('n', 'tn', ':BufferLineMoveNext<CR>')
+-- vim.keymap.set('n', 'tp', ':BufferLineMovePrev<CR>')
 
 --run current file
 vim.keymap.set('n', '<leader>r', ':RunCode<CR>', { noremap = true, silent = false })
@@ -55,8 +55,8 @@ key.set('n', '<C-Left>', ':vertical resize -2<CR>', { desc = 'Resize Left' })
 key.set('n', '<C-Right>', ':vertical resize +2<CR>', { desc = 'Resize Right' })
 
 -- leap
-key.set('n', 'b', '<Plug>(leap-forward-to)', { desc = 'Leap Forward' })
-key.set('n', 'B', '<Plug>(leap-backward-to)', { desc = 'Leap Backward' })
+key.set('n', 't', '<Plug>(leap-forward-to)', { desc = 'Leap Forward' })
+key.set('n', 'T', '<Plug>(leap-backward-to)', { desc = 'Leap Backward' })
 
 -- debugprint
 key.set('n', '<leader>dp', "<cmd>lua require('debugprint').debugprint()<CR>", { expr = true, desc = 'Debug Print' })
