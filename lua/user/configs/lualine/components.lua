@@ -1,6 +1,6 @@
-local conditions = require "user.configs.lualine.conditions"
-local colors = require "user.configs.lualine.colors"
-local icons = require "user.ui.icons"
+local conditions = require 'user.configs.lualine.conditions'
+local colors = require 'user.configs.lualine.colors'
+local icons = require 'user.ui.icons'
 
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -15,36 +15,36 @@ end
 
 local branch = icons.git.Branch
 
-if vim.colorscheme == "lunar" then
-  branch = "%#SLGitIcon#" .. icons.git.Branch .. "%*" .. "%#SLBranchName#"
+if vim.colorscheme == 'lunar' then
+  branch = '%#SLGitIcon#' .. icons.git.Branch .. '%*' .. '%#SLBranchName#'
 end
 
 return {
   mode = {
     function()
-      return " " .. icons.ui.Target .. " "
+      return ' ' .. icons.ui.Target .. ' '
     end,
     padding = { left = 0, right = 0 },
     color = {},
     cond = nil,
   },
   branch = {
-    "b:gitsigns_head",
+    'b:gitsigns_head',
     icon = branch,
-    color = { gui = "bold" },
+    color = { gui = 'bold' },
   },
   filename = {
-    "filename",
+    'filename',
     color = {},
     cond = nil,
   },
   diff = {
-    "diff",
+    'diff',
     source = diff_source,
     symbols = {
-      added = icons.git.LineAdded .. " ",
-      modified = icons.git.LineModified .. " ",
-      removed = icons.git.LineRemoved .. " ",
+      added = icons.git.LineAdded .. ' ',
+      modified = icons.git.LineModified .. ' ',
+      removed = icons.git.LineRemoved .. ' ',
     },
     padding = { left = 2, right = 1 },
     diff_color = {
@@ -56,28 +56,28 @@ return {
   },
   python_env = {
     function()
-      local utils = require "user.configs.lualine.utils"
-      if vim.bo.filetype == "python" then
-        local venv = os.getenv "CONDA_DEFAULT_ENV" or os.getenv "VIRTUAL_ENV"
+      local utils = require 'user.configs.lualine.utils'
+      if vim.bo.filetype == 'python' then
+        local venv = os.getenv 'CONDA_DEFAULT_ENV' or os.getenv 'VIRTUAL_ENV'
         if venv then
-          local iconss = require "nvim-web-devicons"
-          local py_icon, _ = iconss.get_icon ".py"
-          return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
+          local iconss = require 'nvim-web-devicons'
+          local py_icon, _ = iconss.get_icon '.py'
+          return string.format(' ' .. py_icon .. ' (%s)', utils.env_cleanup(venv))
         end
       end
-      return ""
+      return ''
     end,
     color = { fg = colors.green },
     cond = conditions.hide_in_width,
   },
   diagnostics = {
-    "diagnostics",
-    sources = { "nvim_diagnostic" },
+    'diagnostics',
+    sources = { 'nvim_diagnostic' },
     symbols = {
-      error = icons.diagnostics.BoldError .. " ",
-      warn = icons.diagnostics.BoldWarning .. " ",
-      info = icons.diagnostics.BoldInformation .. " ",
-      hint = icons.diagnostics.BoldHint .. " ",
+      error = icons.diagnostics.BoldError .. ' ',
+      warn = icons.diagnostics.BoldWarning .. ' ',
+      info = icons.diagnostics.BoldInformation .. ' ',
+      hint = icons.diagnostics.BoldHint .. ' ',
     },
     -- cond = conditions.hide_in_width,
   },
@@ -96,7 +96,7 @@ return {
     function()
       local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
       if #buf_clients == 0 then
-        return "LSP Inactive"
+        return 'LSP Inactive'
       end
 
       local buf_ft = vim.bo.filetype
@@ -105,11 +105,11 @@ return {
 
       -- add client
       for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" and client.name ~= "copilot" then
+        if client.name ~= 'null-ls' and client.name ~= 'copilot' then
           table.insert(buf_client_names, client.name)
         end
 
-        if client.name == "copilot" then
+        if client.name == 'copilot' then
           copilot_active = true
         end
       end
@@ -126,51 +126,51 @@ return {
 
       local unique_client_names = vim.fn.uniq(buf_client_names)
 
-      local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
+      local language_servers = '[' .. table.concat(unique_client_names, ', ') .. ']'
 
       if copilot_active then
-        language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
+        language_servers = language_servers .. '%#SLCopilot#' .. ' ' .. icons.git.Octoface .. '%*'
       end
 
       return language_servers
     end,
-    color = { gui = "bold" },
+    color = { gui = 'bold' },
     cond = conditions.hide_in_width,
   },
-  location = { "location" },
+  location = { 'location' },
   progress = {
-    "progress",
+    'progress',
     fmt = function()
-      return "%P/%L"
+      return '%P/%L'
     end,
     color = {},
   },
 
   spaces = {
     function()
-      local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
-      return icons.ui.Tab .. " " .. shiftwidth
+      local shiftwidth = vim.api.nvim_buf_get_option(0, 'shiftwidth')
+      return icons.ui.Tab .. ' ' .. shiftwidth
     end,
     padding = 1,
   },
   encoding = {
-    "o:encoding",
+    'o:encoding',
     fmt = string.upper,
     color = {},
     cond = conditions.hide_in_width,
   },
-  filetype = { "filetype", cond = nil, padding = { left = 1, right = 1 } },
+  filetype = { 'filetype', cond = nil, padding = { left = 1, right = 1 } },
   scrollbar = {
     function()
-      local current_line = vim.fn.line "."
-      local total_lines = vim.fn.line "$"
-      local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+      local current_line = vim.fn.line '.'
+      local total_lines = vim.fn.line '$'
+      local chars = { '__', '▁▁', '▂▂', '▃▃', '▄▄', '▅▅', '▆▆', '▇▇', '██' }
       local line_ratio = current_line / total_lines
       local index = math.ceil(line_ratio * #chars)
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    color = "SLProgress",
+    color = 'SLProgress',
     cond = nil,
   },
 }

@@ -1,22 +1,22 @@
 -- dofile(vim.g.base46_cache .. "lsp")
 -- require "nvchad.lsp"
 
-local utils = require "user.utils"
+local utils = require 'user.utils'
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
-  "html",
-  "cssls",
-  "tsserver",
-  "clangd",
-  "tailwindcss",
-  "pyright",
-  "rust_analyzer",
-  "jdtls",
-  "jsonls",
-  "intelephense",
-  "lua_ls",
-  "sqlls",
+  'html',
+  'cssls',
+  'tsserver',
+  'clangd',
+  'tailwindcss',
+  'pyright',
+  'rust_analyzer',
+  'jdtls',
+  'jsonls',
+  'intelephense',
+  'lua_ls',
+  'sqlls',
 }
 -- export on_attach & capabilities for custom lspconfigs
 
@@ -39,7 +39,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities.textDocument.completion.completionItem = {
-  documentationFormat = { "markdown", "plaintext" },
+  documentationFormat = { 'markdown', 'plaintext' },
   snippetSupport = true,
   preselectSupport = true,
   insertReplaceSupport = true,
@@ -49,15 +49,15 @@ capabilities.textDocument.completion.completionItem = {
   tagSupport = { valueSet = { 1 } },
   resolveSupport = {
     properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
+      'documentation',
+      'detail',
+      'additionalTextEdits',
     },
   },
 }
 
 ---@diagnostic disable-next-line: different-requires
-local lspconfig = require "lspconfig"
+local lspconfig = require 'lspconfig'
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -68,35 +68,34 @@ end
 
 lspconfig.clangd.setup {
   keys = {
-    { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+    { '<leader>cR', '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
   },
 
   on_attach = on_attach,
 
   -- NOTE: I added utf-16 to offsetEncoding in capabilities of nvchad
-  capabilities = vim.tbl_deep_extend("force", {
-    offsetEncoding = { "utf-16" },
+  capabilities = vim.tbl_deep_extend('force', {
+    offsetEncoding = { 'utf-16' },
   }, capabilities),
 }
 
+require('typescript-tools').setup {}
 
-require("typescript-tools").setup {}
-
-require("lspconfig").lua_ls.setup {
+require('lspconfig').lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim" },
+        globals = { 'vim' },
       },
       workspace = {
         library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+          [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+          [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+          [vim.fn.stdpath 'data' .. '/lazy/ui/nvchad_types'] = true,
+          [vim.fn.stdpath 'data' .. '/lazy/lazy.nvim/lua/lazy'] = true,
         },
         maxPreload = 100000,
         preloadFileSize = 10000,
@@ -104,4 +103,3 @@ require("lspconfig").lua_ls.setup {
     },
   },
 }
-

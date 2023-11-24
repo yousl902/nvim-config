@@ -1,5 +1,5 @@
 local M = {}
-local icons = require "user.ui.icons"
+local icons = require 'user.ui.icons'
 
 local setup = {
   auto_reload_on_write = false,
@@ -7,13 +7,13 @@ local setup = {
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  sort_by = "name",
+  sort_by = 'name',
   root_dirs = {},
   prefer_startup_root = false,
   sync_root_with_cwd = true,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
-  on_attach = "default",
+  on_attach = 'default',
   -- remove_keymaps = false,
   select_prompts = false,
   view = {
@@ -21,17 +21,17 @@ local setup = {
     centralize_selection = true,
     width = 30,
     -- hide_root_folder = false,
-    side = "left",
+    side = 'left',
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
-    signcolumn = "yes",
+    signcolumn = 'yes',
     float = {
       enable = false,
       quit_on_focus_loss = true,
       open_win_config = {
-        relative = "editor",
-        border = "rounded",
+        relative = 'editor',
+        border = 'rounded',
         width = 30,
         height = 30,
         row = 1,
@@ -44,24 +44,24 @@ local setup = {
     group_empty = false,
     highlight_git = true,
     full_name = false,
-    highlight_opened_files = "none",
-    root_folder_label = ":t",
+    highlight_opened_files = 'none',
+    root_folder_label = ':t',
     indent_width = 2,
     indent_markers = {
       enable = false,
       inline_arrows = true,
       icons = {
-        corner = "└",
-        edge = "│",
-        item = "│",
-        none = " ",
+        corner = '└',
+        edge = '│',
+        item = '│',
+        none = ' ',
       },
     },
     icons = {
       webdev_colors = true,
-      git_placement = "before",
-      padding = " ",
-      symlink_arrow = " ➛ ",
+      git_placement = 'before',
+      padding = ' ',
+      symlink_arrow = ' ➛ ',
       show = {
         file = true,
         folder = true,
@@ -86,14 +86,14 @@ local setup = {
           unstaged = icons.git.FileUnstaged,
           staged = icons.git.FileStaged,
           unmerged = icons.git.FileUnmerged,
-          renamed =icons.git.FileRenamed,
+          renamed = icons.git.FileRenamed,
           untracked = icons.git.FileUntracked,
           deleted = icons.git.FileDeleted,
           ignored = icons.git.FileIgnored,
         },
       },
     },
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    special_files = { 'Cargo.toml', 'Makefile', 'README.md', 'readme.md' },
     symlink_destination = true,
   },
   hijack_directories = {
@@ -126,7 +126,7 @@ local setup = {
     dotfiles = false,
     git_clean = false,
     no_buffer = false,
-    custom = { "node_modules", "\\.cache" },
+    custom = { 'node_modules', '\\.cache' },
     exclude = {},
   },
   filesystem_watchers = {
@@ -156,9 +156,9 @@ local setup = {
       open_win_config = {
         col = 1,
         row = 1,
-        relative = "cursor",
-        border = "shadow",
-        style = "minimal",
+        relative = 'cursor',
+        border = 'shadow',
+        style = 'minimal',
       },
     },
     open_file = {
@@ -166,11 +166,11 @@ local setup = {
       resize_window = false,
       window_picker = {
         enable = true,
-        picker = "default",
-        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+        picker = 'default',
+        chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
         exclude = {
-          filetype = { "notify", "lazy", "qf", "diff", "fugitive", "fugitiveblame" },
-          buftype = { "nofile", "terminal", "help" },
+          filetype = { 'notify', 'lazy', 'qf', 'diff', 'fugitive', 'fugitiveblame' },
+          buftype = { 'nofile', 'terminal', 'help' },
         },
       },
     },
@@ -179,11 +179,11 @@ local setup = {
     },
   },
   trash = {
-    cmd = "trash",
+    cmd = 'trash',
     require_confirm = true,
   },
   live_filter = {
-    prefix = "[FILTER]: ",
+    prefix = '[FILTER]: ',
     always_show_folders = true,
   },
   tab = {
@@ -217,48 +217,48 @@ local setup = {
 }
 
 function M.start_telescope(telescope_mode)
-  local node = require("nvim-tree.lib").get_node_at_cursor()
+  local node = require('nvim-tree.lib').get_node_at_cursor()
   local abspath = node.link_to or node.absolute_path
   local is_folder = node.open ~= nil
-  local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
-  require("telescope.builtin")[telescope_mode] {
+  local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ':h')
+  require('telescope.builtin')[telescope_mode] {
     cwd = basedir,
   }
 end
 
 local function on_attach(bufnr)
-  local api = require "nvim-tree.api"
+  local api = require 'nvim-tree.api'
 
   local function telescope_find_files(_)
-    require("user.configs.nvim-tree").start_telescope "find_files"
+    require('user.configs.nvim-tree').start_telescope 'find_files'
   end
 
   local function telescope_live_grep(_)
-    require("user.configs.nvim-tree").start_telescope "live_grep"
+    require('user.configs.nvim-tree').start_telescope 'live_grep'
   end
 
   local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
   api.config.mappings.default_on_attach(bufnr)
 
   local useful_keys = {
-    ["l"] = { api.node.open.edit, opts "Open" },
-    ["o"] = { api.node.open.edit, opts "Open" },
-    ["<CR>"] = { api.node.open.edit, opts "Open" },
-    ["v"] = { api.node.open.vertical, opts "Open: Vertical Split" },
-    ["h"] = { api.node.navigate.parent_close, opts "Close Directory" },
-    ["C"] = { api.tree.change_root_to_node, opts "CD" },
-    ["gtg"] = { telescope_live_grep, opts "Telescope Live Grep" },
-    ["gtf"] = { telescope_find_files, opts "Telescope Find File" },
+    ['l'] = { api.node.open.edit, opts 'Open' },
+    ['o'] = { api.node.open.edit, opts 'Open' },
+    ['<CR>'] = { api.node.open.edit, opts 'Open' },
+    ['v'] = { api.node.open.vertical, opts 'Open: Vertical Split' },
+    ['h'] = { api.node.navigate.parent_close, opts 'Close Directory' },
+    ['C'] = { api.tree.change_root_to_node, opts 'CD' },
+    ['gtg'] = { telescope_live_grep, opts 'Telescope Live Grep' },
+    ['gtf'] = { telescope_find_files, opts 'Telescope Find File' },
   }
 
-  require("lvim.keymappings").load_mode("n", useful_keys)
+  require('lvim.keymappings').load_mode('n', useful_keys)
 end
 
 function M.setup()
-  local status_ok, nvim_tree = pcall(require, "nvim-tree")
+  local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 
   -- Implicitly update nvim-tree when project module is active
   -- if lvim.builtin.project.active then

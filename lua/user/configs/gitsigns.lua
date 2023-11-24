@@ -1,37 +1,37 @@
 local M = {}
-local icons = require "user.ui.icons"
+local icons = require 'user.ui.icons'
 
 local opts = {
   signs = {
     add = {
-      hl = "GitSignsAdd",
+      hl = 'GitSignsAdd',
       text = icons.ui.BoldLineLeft,
-      numhl = "GitSignsAddNr",
-      linehl = "GitSignsAddLn",
+      numhl = 'GitSignsAddNr',
+      linehl = 'GitSignsAddLn',
     },
     change = {
-      hl = "GitSignsChange",
+      hl = 'GitSignsChange',
       text = icons.ui.BoldLineLeft,
-      numhl = "GitSignsChangeNr",
-      linehl = "GitSignsChangeLn",
+      numhl = 'GitSignsChangeNr',
+      linehl = 'GitSignsChangeLn',
     },
     delete = {
-      hl = "GitSignsDelete",
+      hl = 'GitSignsDelete',
       text = icons.ui.Triangle,
-      numhl = "GitSignsDeleteNr",
-      linehl = "GitSignsDeleteLn",
+      numhl = 'GitSignsDeleteNr',
+      linehl = 'GitSignsDeleteLn',
     },
     topdelete = {
-      hl = "GitSignsDelete",
+      hl = 'GitSignsDelete',
       text = icons.ui.Triangle,
-      numhl = "GitSignsDeleteNr",
-      linehl = "GitSignsDeleteLn",
+      numhl = 'GitSignsDeleteNr',
+      linehl = 'GitSignsDeleteLn',
     },
     changedelete = {
-      hl = "GitSignsChange",
+      hl = 'GitSignsChange',
       text = icons.ui.BoldLineLeft,
-      numhl = "GitSignsChangeNr",
-      linehl = "GitSignsChangeLn",
+      numhl = 'GitSignsChangeNr',
+      linehl = 'GitSignsChangeLn',
     },
   },
   signcolumn = true,
@@ -46,20 +46,20 @@ local opts = {
   current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
     ignore_whitespace = false,
   },
-  current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
   sign_priority = 6,
   status_formatter = nil, -- Use default
   update_debounce = 200,
   max_file_length = 40000,
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "rounded",
-    style = "minimal",
-    relative = "cursor",
+    border = 'rounded',
+    style = 'minimal',
+    relative = 'cursor',
     row = 0,
     col = 1,
   },
@@ -67,7 +67,7 @@ local opts = {
 }
 
 M.setup = function()
-  local gitsigns = require "gitsigns"
+  local gitsigns = require 'gitsigns'
 
   gitsigns.setup(opts)
   -- if lvim.builtin.gitsigns.on_config_done then

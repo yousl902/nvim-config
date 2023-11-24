@@ -1,14 +1,14 @@
 local M = {}
-local components = require "user.configs.lualine.components"
+local components = require 'user.configs.lualine.components'
 
 local setup = {
   -- style = "lvim",
   options = {
-    theme = "auto",
+    theme = 'auto',
     globalstatus = true,
     icons_enabled = true,
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     -- disabled_filetypes = { "alpha" },
   },
   sections = {
@@ -96,7 +96,7 @@ M.setup = function()
   --   return
   -- end
 
-  local status_ok, lualine = pcall(require, "lualine")
+  local status_ok, lualine = pcall(require, 'lualine')
   if not status_ok then
     return
   end

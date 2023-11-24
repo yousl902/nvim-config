@@ -1,31 +1,31 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
+    'hrsh7th/nvim-cmp',
     config = function()
       -- if lvim.builtin.cmp then
-        require("user.configs.cmp").setup()
+      require('user.configs.cmp').setup()
       -- end
     end,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
-      "cmp-nvim-lsp",
-      "cmp_luasnip",
-      "cmp-buffer",
-      "cmp-path",
-      "cmp-cmdline",
+      'cmp-nvim-lsp',
+      'cmp_luasnip',
+      'cmp-buffer',
+      'cmp-path',
+      'cmp-cmdline',
     },
   },
-  { "hrsh7th/cmp-nvim-lsp", lazy = true },
-  { "saadparwaiz1/cmp_luasnip", lazy = true },
-  { "hrsh7th/cmp-buffer", lazy = true },
-  { "hrsh7th/cmp-path", lazy = true },
+  { 'hrsh7th/cmp-nvim-lsp', lazy = true },
+  { 'saadparwaiz1/cmp_luasnip', lazy = true },
+  { 'hrsh7th/cmp-buffer', lazy = true },
+  { 'hrsh7th/cmp-path', lazy = true },
   {
-    "hrsh7th/cmp-cmdline",
+    'hrsh7th/cmp-cmdline',
     lazy = true,
     enabled = true,
   },
   {
-    "L3MON4D3/LuaSnip",
+    'L3MON4D3/LuaSnip',
     config = function()
       -- local utils = require "lvim.utils"
       -- local paths = {}
@@ -34,35 +34,35 @@ return {
       -- if utils.is_directory(user_snippets) then
       --   paths[#paths + 1] = user_snippets
       -- end
-      require("luasnip.loaders.from_lua").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load {
+      require('luasnip.loaders.from_lua').lazy_load()
+      require('luasnip.loaders.from_vscode').lazy_load {
         -- paths = paths,
       }
-      require("luasnip.loaders.from_snipmate").lazy_load()
+      require('luasnip.loaders.from_snipmate').lazy_load()
     end,
-    event = "InsertEnter",
+    event = 'InsertEnter',
     dependencies = {
-      "friendly-snippets",
+      'friendly-snippets',
     },
   },
-  { "rafamadriz/friendly-snippets", lazy = true, cond = true },
+  { 'rafamadriz/friendly-snippets', lazy = true, cond = true },
 
   {
-  "zbirenbaum/copilot-cmp",
-  event = "InsertEnter",
-  dependencies = { "zbirenbaum/copilot.lua" },
-  config = function()
-    vim.defer_fn(function()
-      require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-      require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-    end, 100)
-  end,
+    'zbirenbaum/copilot-cmp',
+    event = 'InsertEnter',
+    dependencies = { 'zbirenbaum/copilot.lua' },
+    config = function()
+      vim.defer_fn(function()
+        require('copilot').setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+        require('copilot_cmp').setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+      end, 100)
+    end,
   },
 
   {
-  "tzachar/cmp-tabnine",
-  build = "./install.sh",
-  dependencies = "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+    'tzachar/cmp-tabnine',
+    build = './install.sh',
+    dependencies = 'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
   },
 }

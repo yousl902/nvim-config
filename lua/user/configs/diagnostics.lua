@@ -1,10 +1,10 @@
-local icons = require "user.ui.icons"
+local icons = require 'user.ui.icons'
 -- Configuration for diagnostics
 local signs = {
-  { name = 'DiagnosticSignError', text = icons.diagnostics.Error},
-  { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning},
-  { name = 'DiagnosticSignInfo', text = icons.diagnostics.Info},
-  { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint},
+  { name = 'DiagnosticSignError', text = icons.diagnostics.Error },
+  { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning },
+  { name = 'DiagnosticSignInfo', text = icons.diagnostics.Info },
+  { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint },
 }
 
 for _, sign in ipairs(signs) do

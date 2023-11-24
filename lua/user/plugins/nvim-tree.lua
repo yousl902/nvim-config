@@ -1,13 +1,13 @@
 return {
   {
-  "kyazdani42/nvim-tree.lua",
-  config = function()
-    require("user.configs.nvim-tree").setup()
-  end,
-  enabled = true,
-  cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
-  event = "User DirOpened",
-},
+    'kyazdani42/nvim-tree.lua',
+    config = function()
+      require('user.configs.nvim-tree').setup()
+    end,
+    enabled = true,
+    cmd = { 'NvimTreeToggle', 'NvimTreeOpen', 'NvimTreeFocus', 'NvimTreeFindFileToggle' },
+    event = 'User DirOpened',
+  },
   -- {
   --   "tamago324/lir.nvim",
   --   config = function()
@@ -17,4 +17,3 @@ return {
   --   event = "User DirOpened",
   -- },
 }
-

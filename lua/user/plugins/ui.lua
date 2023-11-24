@@ -7,29 +7,28 @@ return {
   --   branch = "main",
   --   event = "User FileOpened",
   --   enabled = lvim.builtin.bufferline.active,
-  -- }, 
-    -- breadcrumbs
+  -- },
+  -- breadcrumbs
   {
-    "SmiteshP/nvim-navic",
+    'SmiteshP/nvim-navic',
     -- config = function()
-      -- require("lvim.core.breadcrumbs").setup()
+    -- require("lvim.core.breadcrumbs").setup()
     -- end,
     opts = {},
-    event = "User FileOpened",
+    event = 'User FileOpened',
     enabled = true,
   },
   {
     -- "hoob3rt/lualine.nvim",
-    "nvim-lualine/lualine.nvim",
+    'nvim-lualine/lualine.nvim',
     -- "Lunarvim/lualine.nvim",
     config = function()
-      require("user.configs.lualine").setup()
+      require('user.configs.lualine').setup()
     end,
     -- opts = {},
-    event = "VimEnter",
+    event = 'VimEnter',
     enabled = true,
   },
-
 
   -- {
   --   "szw/vim-maximizer",
@@ -44,27 +43,27 @@ return {
   -- },
 
   {
-    "folke/noice.nvim",
-    event = "VeryLazy",
+    'folke/noice.nvim',
+    event = 'VeryLazy',
     opts = {
       -- add any options here
     },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
+      'MunifTanjim/nui.nvim',
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      'rcarriga/nvim-notify',
     },
     config = function()
-      require("noice").setup {
+      require('noice').setup {
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
+            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+            ['vim.lsp.util.stylize_markdown'] = true,
+            ['cmp.entry.get_documentation'] = true,
           },
         },
         -- you can enable a preset for easier configuration
@@ -78,5 +77,4 @@ return {
       }
     end,
   },
-
 }

@@ -1,4 +1,4 @@
-local icons = require "user.ui.icons"
+local icons = require 'user.ui.icons'
 local M = {}
 M.methods = {}
 --
@@ -17,7 +17,7 @@ end
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 M.methods.has_words_before = has_words_before
 
@@ -40,7 +40,7 @@ M.methods.feedkeys = feedkeys
 ---@param dir number 1 for forward, -1 for backward; defaults to 1
 ---@return boolean true if a jumpable luasnip field is found while inside a snippet
 local function jumpable(dir)
-  local luasnip_ok, luasnip = pcall(require, "luasnip")
+  local luasnip_ok, luasnip = pcall(require, 'luasnip')
   if not luasnip_ok then
     return false
   end
@@ -83,8 +83,7 @@ local function jumpable(dir)
     while node ~= nil and node.next ~= nil and node ~= snippet do
       local n_next = node.next
       local next_pos = n_next and n_next.mark:pos_begin()
-      local candidate = n_next ~= snippet and next_pos and (pos[1] < next_pos[1])
-        or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
+      local candidate = n_next ~= snippet and next_pos and (pos[1] < next_pos[1]) or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
 
       -- Past unmarked exit node, exit early
       if n_next == nil or n_next == snippet.next then
@@ -132,30 +131,30 @@ end
 M.methods.jumpable = jumpable
 
 -- M.config = function()
-  local status_cmp_ok, cmp_types = pcall(require, "cmp.types.cmp")
-  if not status_cmp_ok then
-    return
-  end
-  local ConfirmBehavior = cmp_types.ConfirmBehavior
-  local SelectBehavior = cmp_types.SelectBehavior
+local status_cmp_ok, cmp_types = pcall(require, 'cmp.types.cmp')
+if not status_cmp_ok then
+  return
+end
+local ConfirmBehavior = cmp_types.ConfirmBehavior
+local SelectBehavior = cmp_types.SelectBehavior
 
-  local cmp = require_on_index "cmp"
-  local luasnip = require_on_index "luasnip"
-  local cmp_window = require "cmp.config.window"
-  local cmp_mapping = require "cmp.config.mapping"
+local cmp = require_on_index 'cmp'
+local luasnip = require_on_index 'luasnip'
+local cmp_window = require 'cmp.config.window'
+local cmp_mapping = require 'cmp.config.mapping'
 
 local source_names = {
-  nvim_lsp = "(LSP)",
-  emoji = "(Emoji)",
-  path = "(Path)",
-  calc = "(Calc)",
-  cmp_tabnine = "(Tabnine)",
-  vsnip = "(Snippet)",
-  luasnip = "(Snippet)",
-  buffer = "(Buffer)",
-  tmux = "(TMUX)",
-  copilot = "(Copilot)",
-  treesitter = "(TreeSitter)",
+  nvim_lsp = '(LSP)',
+  emoji = '(Emoji)',
+  path = '(Path)',
+  calc = '(Calc)',
+  cmp_tabnine = '(Tabnine)',
+  vsnip = '(Snippet)',
+  luasnip = '(Snippet)',
+  buffer = '(Buffer)',
+  tmux = '(TMUX)',
+  copilot = '(Copilot)',
+  treesitter = '(TreeSitter)',
 }
 local duplicates = {
   buffer = 1,
@@ -173,8 +172,8 @@ local setup = {
   active = true,
   on_config_done = nil,
   enabled = function()
-    local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-    if buftype == "prompt" then
+    local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
+    if buftype == 'prompt' then
       return false
     end
     return true
@@ -189,7 +188,7 @@ local setup = {
     native_menu = false,
   },
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { 'kind', 'abbr', 'menu' },
     max_width = 0,
     kind_icons = icons.kind,
     source_names = source_names,
@@ -203,34 +202,33 @@ local setup = {
       if true then
         vim_item.kind = icons.kind[vim_item.kind]
 
-        if entry.source.name == "copilot" then
+        if entry.source.name == 'copilot' then
           vim_item.kind = icons.git.Octoface
-          vim_item.kind_hl_group = "CmpItemKindCopilot"
+          vim_item.kind_hl_group = 'CmpItemKindCopilot'
         end
 
-        if entry.source.name == "cmp_tabnine" then
+        if entry.source.name == 'cmp_tabnine' then
           vim_item.kind = icons.misc.Robot
-          vim_item.kind_hl_group = "CmpItemKindTabnine"
+          vim_item.kind_hl_group = 'CmpItemKindTabnine'
         end
 
-        if entry.source.name == "crates" then
+        if entry.source.name == 'crates' then
           vim_item.kind = icons.misc.Package
-          vim_item.kind_hl_group = "CmpItemKindCrate"
+          vim_item.kind_hl_group = 'CmpItemKindCrate'
         end
 
-        if entry.source.name == "lab.quick_data" then
+        if entry.source.name == 'lab.quick_data' then
           vim_item.kind = icons.misc.CircuitBoard
-          vim_item.kind_hl_group = "CmpItemKindConstant"
+          vim_item.kind_hl_group = 'CmpItemKindConstant'
         end
 
-        if entry.source.name == "emoji" then
+        if entry.source.name == 'emoji' then
           vim_item.kind = icons.misc.Smiley
-          vim_item.kind_hl_group = "CmpItemKindEmoji"
+          vim_item.kind_hl_group = 'CmpItemKindEmoji'
         end
       end
       vim_item.menu = source_names[entry.source.name]
-      vim_item.dup = duplicates[entry.source.name]
-        or 0 --lvim.builtin.cmp.formatting.duplicates_default
+      vim_item.dup = duplicates[entry.source.name] or 0 --lvim.builtin.cmp.formatting.duplicates_default
       return vim_item
     end,
   },
@@ -245,65 +243,65 @@ local setup = {
   },
   sources = {
     {
-      name = "copilot",
+      name = 'copilot',
       -- keyword_length = 0,
       max_item_count = 3,
       trigger_characters = {
         {
-          ".",
-          ":",
-          "(",
+          '.',
+          ':',
+          '(',
           "'",
           '"',
-          "[",
-          ",",
-          "#",
-          "*",
-          "@",
-          "|",
-          "=",
-          "-",
-          "{",
-          "/",
-          "\\",
-          "+",
-          "?",
-          " ",
+          '[',
+          ',',
+          '#',
+          '*',
+          '@',
+          '|',
+          '=',
+          '-',
+          '{',
+          '/',
+          '\\',
+          '+',
+          '?',
+          ' ',
           -- "\t",
           -- "\n",
         },
       },
     },
     {
-      name = "nvim_lsp",
+      name = 'nvim_lsp',
       entry_filter = function(entry, ctx)
-        local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-        if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+        local kind = require('cmp.types.lsp').CompletionItemKind[entry:get_kind()]
+        if kind == 'Snippet' and ctx.prev_context.filetype == 'java' then
           return false
         end
         return true
       end,
     },
 
-    { name = "path" },
-    { name = "luasnip" },
-    { name = "cmp_tabnine" },
-    { name = "nvim_lua" },
-    { name = "buffer" },
-    { name = "calc" },
-    { name = "emoji" },
-    { name = "treesitter" },
-    { name = "crates" },
-    { name = "tmux" },
+    { name = 'path' },
+    { name = 'luasnip' },
+    { name = 'cmp_tabnine' },
+    { name = 'nvim_lua' },
+    { name = 'buffer' },
+    { name = 'calc' },
+    { name = 'emoji' },
+    { name = 'treesitter' },
+    { name = 'crates' },
+    { name = 'tmux' },
   },
   mapping = cmp_mapping.preset.insert {
-    ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
-    ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
-    ["<Down>"] = cmp_mapping(cmp_mapping.select_next_item { behavior = SelectBehavior.Select }, { "i" }),
-    ["<Up>"] = cmp_mapping(cmp_mapping.select_prev_item { behavior = SelectBehavior.Select }, { "i" }),
-    ["<C-d>"] = cmp_mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp_mapping.scroll_docs(4),
-    ["<C-y>"] = cmp_mapping {
+    ['<C-k>'] = cmp_mapping(cmp_mapping.select_prev_item(), { 'i', 'c' }),
+    ['<C-j>'] = cmp_mapping(cmp_mapping.select_next_item(), { 'i', 'c' }),
+    ['<Down>'] = cmp_mapping(cmp_mapping.select_next_item { behavior = SelectBehavior.Select }, { 'i' }),
+    ['<Up>'] = cmp_mapping(cmp_mapping.select_prev_item { behavior = SelectBehavior.Select }, { 'i' }),
+    ['<C-d>'] = cmp_mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp_mapping.scroll_docs(4),
+    ['<C-y>'] = cmp_mapping {
       i = cmp_mapping.confirm { behavior = ConfirmBehavior.Replace, select = false },
       c = function(fallback)
         if cmp.visible() then
@@ -313,7 +311,7 @@ local setup = {
         end
       end,
     },
-    ["<Tab>"] = cmp_mapping(function(fallback)
+    ['<Tab>'] = cmp_mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then
@@ -326,8 +324,8 @@ local setup = {
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp_mapping(function(fallback)
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp_mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -335,20 +333,20 @@ local setup = {
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<C-Space>"] = cmp_mapping.complete(),
-    ["<C-e>"] = cmp_mapping.abort(),
-    ["<CR>"] = cmp_mapping(function(fallback)
+    end, { 'i', 's' }),
+    ['<C-Space>'] = cmp_mapping.complete(),
+    ['<C-e>'] = cmp_mapping.abort(),
+    ['<CR>'] = cmp_mapping(function(fallback)
       if cmp.visible() then
         local confirm_opts = vim.deepcopy(confirm_opts) -- avoid mutating the original opts below
         local is_insert_mode = function()
-          return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+          return vim.api.nvim_get_mode().mode:sub(1, 1) == 'i'
         end
         if is_insert_mode() then -- prevent overwriting brackets
           confirm_opts.behavior = ConfirmBehavior.Insert
         end
         local entry = cmp.get_selected_entry()
-        local is_copilot = entry and entry.source.name == "copilot"
+        local is_copilot = entry and entry.source.name == 'copilot'
         if is_copilot then
           confirm_opts.behavior = ConfirmBehavior.Replace
           confirm_opts.select = true
@@ -364,25 +362,24 @@ local setup = {
     enable = false,
     options = {
       {
-        type = ":",
+        type = ':',
         sources = {
-          { name = "path" },
-          { name = "cmdline" },
+          { name = 'path' },
+          { name = 'cmdline' },
         },
       },
       {
-        type = { "/", "?" },
+        type = { '/', '?' },
         sources = {
-          { name = "buffer" },
+          { name = 'buffer' },
         },
       },
     },
   },
 }
 
-
 function M.setup()
-  local cmp = require "cmp"
+  local cmp = require 'cmp'
   cmp.setup(setup)
 
   if setup.cmdline.enable then

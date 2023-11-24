@@ -11,7 +11,7 @@ local setup = {
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = false,
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
-  direction = "float",
+  direction = 'float',
   close_on_exit = true, -- close the terminal window when the process exits
   shell = nil, -- change the default shell
   -- This field is only relevant if direction is set to 'float'
@@ -21,13 +21,13 @@ local setup = {
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
     -- border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-    border = "curved",
+    border = 'curved',
     -- width = <value>,
     -- height = <value>,
     winblend = 0,
     highlights = {
-      border = "Normal",
-      background = "Normal",
+      border = 'Normal',
+      background = 'Normal',
     },
   },
   -- Add executables on the config.lua
@@ -36,10 +36,10 @@ local setup = {
   -- lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs+1] = {"gdb", "tg", "GNU Debugger"}
   -- TODO: pls add mappings in which key and refactor this
   execs = {
-    { nil, "<leader>tt", "Horizontal Terminal", "horizontal", 0.3 },
-    { nil, "<leader>tv", "Vertical Terminal", "vertical", 0.4 },
-    { nil, "<leader>tf", "Float Terminal", "float", nil },
-  }
+    { nil, '<leader>tt', 'Horizontal Terminal', 'horizontal', 0.3 },
+    { nil, '<leader>tv', 'Vertical Terminal', 'vertical', 0.4 },
+    { nil, '<leader>tf', 'Float Terminal', 'float', nil },
+  },
 }
 
 --- Get current buffer size
@@ -61,10 +61,10 @@ end
 ---@return integer
 local function get_dynamic_terminal_size(direction, size)
   size = size or setup.size
-  if direction ~= "float" and tostring(size):find(".", 1, true) then
+  if direction ~= 'float' and tostring(size):find('.', 1, true) then
     size = math.min(size, 1.0)
     local buf_sizes = get_buf_size()
-    local buf_size = direction == "horizontal" and buf_sizes.height or buf_sizes.width
+    local buf_size = direction == 'horizontal' and buf_sizes.height or buf_sizes.width
     return buf_size * size
   else
     return size
@@ -92,7 +92,7 @@ M.init = function()
 end
 
 M.setup = function()
-  local terminal = require "toggleterm"
+  local terminal = require 'toggleterm'
   terminal.setup(setup)
   -- if lvim.builtin.terminal.on_config_done then
   --   lvim.builtin.terminal.on_config_done(terminal)
@@ -100,19 +100,19 @@ M.setup = function()
 end
 
 M.add_exec = function(opts)
-  local binary = opts.cmd:match "(%S+)"
+  local binary = opts.cmd:match '(%S+)'
   if vim.fn.executable(binary) ~= 1 then
-    Log:debug("Skipping configuring executable " .. binary .. ". Please make sure it is installed properly.")
+    Log:debug('Skipping configuring executable ' .. binary .. '. Please make sure it is installed properly.')
     return
   end
 
-  vim.keymap.set({ "n", "t" }, opts.keymap, function()
+  vim.keymap.set({ 'n', 't' }, opts.keymap, function()
     M._exec_toggle { cmd = opts.cmd, count = opts.count, direction = opts.direction, size = opts.size() }
   end, { desc = opts.label, noremap = true, silent = true })
 end
 
 M._exec_toggle = function(opts)
-  local Terminal = require("toggleterm.terminal").Terminal
+  local Terminal = require('toggleterm.terminal').Terminal
   local term = Terminal:new { cmd = opts.cmd, count = opts.count, direction = opts.direction }
   term:toggle(opts.size, opts.direction)
 end
@@ -141,18 +141,18 @@ end
 -- end
 
 M.lazygit_toggle = function()
-  local Terminal = require("toggleterm.terminal").Terminal
+  local Terminal = require('toggleterm.terminal').Terminal
   local lazygit = Terminal:new {
-    cmd = "lazygit",
+    cmd = 'lazygit',
     hidden = true,
-    direction = "float",
+    direction = 'float',
     float_opts = {
-      border = "none",
+      border = 'none',
       width = 100000,
       height = 100000,
     },
     on_open = function(_)
-      vim.cmd "startinsert!"
+      vim.cmd 'startinsert!'
     end,
     on_close = function(_) end,
     count = 99,

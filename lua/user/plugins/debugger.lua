@@ -29,5 +29,4 @@ return {
   --   lazy = true,
   --   enabled = lvim.builtin.dap.active,
   -- },
-
 }
