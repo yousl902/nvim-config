@@ -71,7 +71,9 @@ return {
   },
   {
     'folke/neodev.nvim',
+    opt = {},
     lazy = true,
+    event = 'LspAttach',
   },
 
   -- Autopairs

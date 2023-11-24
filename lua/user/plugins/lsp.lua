@@ -37,7 +37,22 @@ return {
   {
     'williamboman/mason.nvim',
     config = function()
-      require('mason').setup()
+      require('mason').setup({
+	ui = {
+	  icons = {
+	      package_installed = "✓",
+	      package_pending = "➜",
+	      package_uninstalled = "✗"
+	  },
+		      border = {
+			style = "rounded",
+			highlight = "FloatBorder",
+			text_highlight = "FloatBorder",
+			width = 1,
+			color = "FloatBorder",
+		      },
+	},
+      })
     end,
     cmd = { 'Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog' },
     build = function()

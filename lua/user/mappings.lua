@@ -1,4 +1,10 @@
 local key = vim.keymap
+local generic_opts_any = { noremap = true, silent = true }
+
+key.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit' })
+key.set('n', '<leader>Q', '<cmd>qa<CR>', { desc = 'Quit all' })
+key.set('n', '<', '<gv', generic_opts_any)
+key.set('n', '>', '>gv', generic_opts_any)
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

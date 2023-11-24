@@ -24,8 +24,6 @@ local options = {
   -- },
 }
 
-print '..............'
-
 -- change clang_format indentaion to 4 spaces
 local args = require('conform.formatters.clang_format').args
 table.insert(args, '-style={IndentWidth: 4}')

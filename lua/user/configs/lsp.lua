@@ -66,6 +66,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- C++
 lspconfig.clangd.setup {
   keys = {
     { '<leader>cR', '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
@@ -79,27 +80,21 @@ lspconfig.clangd.setup {
   }, capabilities),
 }
 
+--Typescript
 require('typescript-tools').setup {}
 
-require('lspconfig').lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+-- Lua
+require("neodev").setup({
+  -- add any options here, or leave empty to use the default settings
+})
 
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-          [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-          [vim.fn.stdpath 'data' .. '/lazy/ui/nvchad_types'] = true,
-          [vim.fn.stdpath 'data' .. '/lazy/lazy.nvim/lua/lazy'] = true,
-        },
-        maxPreload = 100000,
-        preloadFileSize = 10000,
-      },
-    },
-  },
-}
+      completion = {
+        callSnippet = "Replace"
+      }
+    }
+  }
+})
+
