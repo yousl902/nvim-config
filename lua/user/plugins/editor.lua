@@ -37,12 +37,14 @@ return {
   --   enabled = lvim.builtin.illuminate.active,
   -- },
 
+-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     config = function()
       require('user.configs.indentlines').setup()
     end,
-    event = 'User FileOpened',
+    event = 'BufRead',
     enabled = true,
   },
 

@@ -15,8 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- ui = { border = 'rounded' },
   { import = 'user.plugins' },
-}, {})
+}, { ui = { border = 'rounded' }})
 
 -- [[configurations]]
 require 'user.mappings'

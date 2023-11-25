@@ -33,26 +33,20 @@ return {
     dependencies = 'mason.nvim',
   },
   { 'tamago324/nlsp-settings.nvim', cmd = 'LspSettings', lazy = true },
-  { 'jose-elias-alvarez/null-ls.nvim', lazy = true },
+  -- { 'jose-elias-alvarez/null-ls.nvim', lazy = true },
   {
     'williamboman/mason.nvim',
     config = function()
-      require('mason').setup({
-	ui = {
-	  icons = {
-	      package_installed = "✓",
-	      package_pending = "➜",
-	      package_uninstalled = "✗"
-	  },
-		      border = {
-			style = "rounded",
-			highlight = "FloatBorder",
-			text_highlight = "FloatBorder",
-			width = 1,
-			color = "FloatBorder",
-		      },
-	},
-      })
+      require('mason').setup {
+        ui = {
+          icons = {
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
+          },
+          border = "rounded",
+        },
+      }
     end,
     cmd = { 'Mason', 'MasonInstall', 'MasonUninstall', 'MasonUninstallAll', 'MasonLog' },
     build = function()
@@ -128,6 +122,7 @@ return {
   -- C++
   {
     'p00f/clangd_extensions.nvim',
+    event ='LspAttach'
   },
 
   -- Java

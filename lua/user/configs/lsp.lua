@@ -1,7 +1,5 @@
--- dofile(vim.g.base46_cache .. "lsp")
--- require "nvchad.lsp"
-
-local utils = require 'user.utils'
+-- add border for floating windows
+require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
@@ -18,22 +16,11 @@ local servers = {
   'lua_ls',
   'sqlls',
 }
--- export on_attach & capabilities for custom lspconfigs
 
 local on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
 
-  -- utils.load_mappings("lspconfig", { buffer = bufnr })
-  -- load_mappings("lspconfig", { buffer = bufnr })
-
-  -- if client.server_capabilities.signatureHelpProvider then
-  --   require("nvchad.signature").setup(client)
-  -- end
-
-  -- if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
-  --   client.server_capabilities.semanticTokensProvider = nil
-  -- end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -72,9 +59,14 @@ lspconfig.clangd.setup {
     { '<leader>cR', '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
   },
 
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', '<leader>lm', '<cmd>ClangdMemoryUsage<cr>', opts)
+    require('clangd_extensions.inlay_hints').setup_autocmd()
+    require('clangd_extensions.inlay_hints').set_inlay_hints()
+  end,
 
-  -- NOTE: I added utf-16 to offsetEncoding in capabilities of nvchad
   capabilities = vim.tbl_deep_extend('force', {
     offsetEncoding = { 'utf-16' },
   }, capabilities),

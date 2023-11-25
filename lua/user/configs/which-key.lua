@@ -264,15 +264,15 @@ local mappings = {
 
   r = {
     name = 'Refactor',
-    re = { ':Refactor extract ', 'Refactor extract ' },
-    rf = { ':Refactor extract_to_file ', 'Refactor extract_to_file' },
+    e = { ':Refactor extract ', 'Refactor extract ' },
+    f = { ':Refactor extract_to_file ', 'Refactor extract_to_file' },
 
-    rv = { ':Refactor extract_var ', 'Refactor extract_var ' },
-    ri = { ':Refactor inline_var', 'Refactor inline_var' },
-    rI = { ':Refactor inline_func', 'Refactor inline_func' },
+    v = { ':Refactor extract_var ', 'Refactor extract_var ' },
+    i = { ':Refactor inline_var', 'Refactor inline_var' },
+    I = { ':Refactor inline_func', 'Refactor inline_func' },
 
-    rb = { ':Refactor extract_block', 'Refactor extract_block' },
-    rbf = { ':Refactor extract_block_to_file', 'Refactor extract_block_to_file' },
+    b = { ':Refactor extract_block', 'Refactor extract_block' },
+    bf = { ':Refactor extract_block_to_file', 'Refactor extract_block_to_file' },
   },
 }
 

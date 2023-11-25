@@ -11,6 +11,7 @@ return {
           'bash',
           -- "black",
           'c',
+          'cpp',
           'html',
           'lua',
           'luadoc',

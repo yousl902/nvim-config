@@ -1,4 +1,7 @@
 return {
+  {
+    'vimpostor/vim-tpipeline',
+  },
   --   {
   --   "akinsho/bufferline.nvim",
   --   config = function()
@@ -9,15 +12,15 @@ return {
   --   enabled = lvim.builtin.bufferline.active,
   -- },
   -- breadcrumbs
-  {
-    'SmiteshP/nvim-navic',
-    -- config = function()
-    -- require("lvim.core.breadcrumbs").setup()
-    -- end,
-    opts = {},
-    event = 'User FileOpened',
-    enabled = true,
-  },
+  -- {
+  --   'SmiteshP/nvim-navic',
+  --   -- config = function()
+  --   -- require("lvim.core.breadcrumbs").setup()
+  --   -- end,
+  --   opts = {},
+  --   event = 'User FileOpened',
+  --   enabled = true,
+  -- },
   {
     -- "hoob3rt/lualine.nvim",
     'nvim-lualine/lualine.nvim',
