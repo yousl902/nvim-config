@@ -44,6 +44,7 @@ return {
     dependencies = {
       'friendly-snippets',
     },
+    build = "make install_jsregexp"
   },
   { 'rafamadriz/friendly-snippets', lazy = true, cond = true },
 
