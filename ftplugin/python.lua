@@ -1,24 +1,9 @@
--- lvim.builtin.treesitter.ensure_installed = {
---   "python",
--- }
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+pcall(function()
+  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+end)
 
--- -- setup formatting
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup { { name = "black" }, }
--- lvim.format_on_save.enabled = true
--- lvim.format_on_save.pattern = { "*.py" }
-
--- -- setup linting
--- -- local linters = require "lvim.lsp.null-ls.linters"
--- -- linters.setup { { command = "flake8", filetypes = { "python" } } }
-
--- -- setup debug adapter
--- lvim.builtin.dap.active = true
--- local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
--- pcall(function()
---   require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
--- end)
-
+-- TODO: configure neotest and the key mappings for python
 -- -- setup testing
 -- require("neotest").setup({
 --   adapters = {
@@ -35,19 +20,19 @@
 --   }
 -- })
 
--- lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
+-- which_key["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
 --   "Test Method" }
--- lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+-- which_key["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
 --   "Test Method DAP" }
--- lvim.builtin.which_key.mappings["df"] = {
+-- which_key["df"] = {
 --   "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
--- lvim.builtin.which_key.mappings["dF"] = {
+-- which_key["dF"] = {
 --   "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
--- lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+-- which_key["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
 
 -- -- binding for switching
--- lvim.builtin.which_key.mappings["C"] = {
+-- which_key["C"] = {
 --   name = "Python",
 --   c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 -- }
